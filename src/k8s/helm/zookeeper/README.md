@@ -17,10 +17,10 @@ This chart will do the following:
 * Optionally, apply a [Pod Anti-Affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#inter-pod-affinity-and-anti-affinity-beta-feature) to spread the ZooKeeper ensemble across nodes.
 
 ## Installing the Chart
-You can install the chart with the release name `myzk` as below.
+You can install the chart with the release name `<your-installation-name>` as below.
 
 ```console
-$ helm install --name myzk ./
+$ helm --tiller-namespace=<your-namespace> install --name <your-installation-name> ./
 ```
 
 If you do not specify a name, helm will select a name for you.
