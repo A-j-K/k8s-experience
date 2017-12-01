@@ -14,7 +14,7 @@ if($topic === false) {
 	die("No topic supplied");
 }
 
-$hostname = gethomename();
+$hostname = gethostname();
 
 $rk = new RdKafka\Producer();
 $rk->setLogLevel(LOG_DEBUG);

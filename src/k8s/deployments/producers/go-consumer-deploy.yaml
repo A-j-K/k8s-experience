@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-consumer
+  namespace: andykirkham
+  labels:
+    run: go-consumer 
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: go-consumer 
+    spec:
+      containers:
+        - name: go-consumer 
+          image: andykirkham/go-consumer
+          env:
+          - name: KAFKA_BROKER
+            value: "kafka-kafka:9092"
+          - name: KAFKA_TOPIC
+            value: "test"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          imagePullPolicy: Always
+

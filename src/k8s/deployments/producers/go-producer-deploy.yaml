@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-producer
+  namespace: andykirkham
+  labels:
+    run: go-producer 
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: go-producer 
+    spec:
+      containers:
+        - name: go-producer 
+          image: andykirkham/go-producer
+          env:
+          - name: KAFKA_BROKER
+            value: "kafka-kafka:9092"
+          - name: KAFKA_TOPIC
+            value: "test"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          imagePullPolicy: Always
+

@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: php-producer
+  namespace: andykirkham
+  labels:
+    run: php-producer 
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: php-producer 
+    spec:
+      containers:
+        - name: php-producer 
+          image: andykirkham/php-producer
+          env:
+          - name: KAFKA_BROKER
+            value: "kafka-kafka"
+          - name: KAFKA_TOPIC
+            value: "test"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          imagePullPolicy: Always
+

@@ -32,11 +32,14 @@ $topic = $rk->newTopic($topic, $topicConf);
 // Start consuming partition 0
 $topic->consumeStart(0, RD_KAFKA_OFFSET_STORED);
 
+$hostname = gethostname();
+
 while (true) {
     $message = $topic->consume(0, 120*10000);
     switch ($message->err) {
         case RD_KAFKA_RESP_ERR_NO_ERROR:
-            var_dump($message);
+            echo "$hostname received message: " . $message->payload . "\n";
+            //var_dump($message);
             break;
         case RD_KAFKA_RESP_ERR__PARTITION_EOF:
             echo "No more messages; will wait for more\n";

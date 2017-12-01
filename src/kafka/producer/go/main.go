@@ -12,8 +12,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	brokers := []string{ os.Getenv("KAFKA_BROKER") }
+	broker := os.Getenv("KAFKA_BROKER")
+	fmt.Printf("Broker: %s\n", broker)
+	brokers := []string{ broker }
 	topic := os.Getenv("KAFKA_TOPIC")
+	fmt.Printf("Topic: %s\n", topic)
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Retry.Max = 5
